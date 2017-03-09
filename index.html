@@ -7,121 +7,68 @@
 <meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
 <title>智能社— http://www.zhinengshe.com</title>
 <style>
-	div{ width: 100px; height: 100px; float: left; }
+	input{ width: 80px; }
+	#box div{ width:320px; height: 300px; text-align: center; line-height: 300px; border:3px solid red; font-size: 20px; display: none;}
+	.on{ background:red; color:#fff; }
 </style>
 <script>
-	window.onload = function(){
-		var aDiv = document.getElementsByTagName('div');
-		for(var i = 0; i < aDiv.length; i++){
-			var r = parseInt(Math.random()*(256-0)+0);
-			var g = parseInt(Math.random()*(256-0)+0);
-			var b = parseInt(Math.random()*(256-0)+0);
-			aDiv[i].style.background = 'rgb('+r+','+g+','+b+')';
+window.onload = function(){
+	var oBox = document.getElementById('box');
+	var aInput = oBox.getElementsByTagName('input');
+	var aDiv = oBox.getElementsByTagName('div');
+	var oPrev = document.getElementById('prev');
+	var oNext = document.getElementById('next');
+	var iNow = 0;
+
+	for(var i = 0; i < aInput.length; i++){
+		aInput[i].index = i;
+		aInput[i].onclick = function(){
+			iNow = this.index;
+			tab();
 		}
 	}
+	function tab(){
+		for(var j = 0; j < aInput.length; j++){
+			aInput[j].className = '';
+			aDiv[j].style.display = 'none';
+		}
+		aInput[iNow].className = 'on';
+		aDiv[iNow].style.display = 'block';
+	}
+
+	oNext.onclick = function(){
+		iNow++;
+		if(iNow == aInput.length){
+			iNow = 0;
+		}
+		tab();
+	}
+
+	oPrev.onclick = function(){
+		iNow -- ;
+		if(iNow == -1){
+			iNow = aInput.length-1;
+		}
+		tab();
+	}
+}
 </script>
 </head>
 
 <body>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
-	<div></div>
+<div id="box">
+	<p>
+		<a href="javascript:;" id="prev">←</a>
+		<input type="button" value="第一个" class="on">
+		<input type="button" value="第二个">
+		<input type="button" value="第三个">
+		<input type="button" value="第四个">
+		<a href="javascript:;" id="next">→</a>
+	</p>
+	<div style="display: block;">第一个选项卡内容</div>
+	<div>第二个选项卡内容</div>
+	<div>第三个选项卡内容</div>
+	<div>第四个选项卡内容</div>
+</div>
 </body>
 </html>
